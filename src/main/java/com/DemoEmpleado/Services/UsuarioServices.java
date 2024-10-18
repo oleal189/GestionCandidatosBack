@@ -1,4 +1,4 @@
-package com.DemoEmpleado.Repository;
+package com.DemoEmpleado.Services;
 
 import com.DemoEmpleado.Models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;

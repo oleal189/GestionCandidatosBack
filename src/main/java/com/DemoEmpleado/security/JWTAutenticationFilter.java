@@ -1,7 +1,7 @@
 package com.DemoEmpleado.security;
 
 import com.DemoEmpleado.Models.DataAccess;
-import com.DemoEmpleado.Repository.UsuarioDetalleImpl;
+import com.DemoEmpleado.Services.UsuarioDetalleImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JWTAutenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -39,10 +41,17 @@ public class JWTAutenticationFilter extends UsernamePasswordAuthenticationFilter
                                             Authentication authResult) throws IOException, ServletException {
         UsuarioDetalleImpl usuarioDetalle = (UsuarioDetalleImpl) authResult.getPrincipal();
         String token = UtilidadesSecurity.crearToken(usuarioDetalle.getNombre(),usuarioDetalle.getUsername());
-        response.addHeader("Authorization", "Bearer " + token);
-        response.getWriter().flush();
+        // Crear un mapa para almacenar la respuesta en formato JSON
+        Map<String, String> tokenResponse = new HashMap<>();
+        tokenResponse.put("token", "Bearer " + token);
 
-        super.successfulAuthentication(request, response, chain, authResult);
+        // Establecer el tipo de contenido de la respuesta como JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        // Escribir el token en el cuerpo de la respuesta como JSON
+        new ObjectMapper().writeValue(response.getWriter(), tokenResponse);
+
 
     }
 }
