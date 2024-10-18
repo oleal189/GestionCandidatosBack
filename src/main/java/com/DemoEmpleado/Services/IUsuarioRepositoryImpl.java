@@ -1,8 +1,9 @@
-package com.DemoEmpleado.Repository;
+package com.DemoEmpleado.Services;
 
 
 
 import com.DemoEmpleado.Models.Usuario;
+import com.DemoEmpleado.Repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

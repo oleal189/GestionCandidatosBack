@@ -1,4 +1,4 @@
-package com.DemoEmpleado.Repository;
+package com.DemoEmpleado.Services;
 
 import com.DemoEmpleado.Models.Usuario;
 import lombok.AllArgsConstructor;

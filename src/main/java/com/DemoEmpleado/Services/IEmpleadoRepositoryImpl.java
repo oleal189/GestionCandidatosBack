@@ -1,6 +1,7 @@
-package com.DemoEmpleado.Repository;
+package com.DemoEmpleado.Services;
 
 import com.DemoEmpleado.Models.Empleado;
+import com.DemoEmpleado.Repository.IEmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
